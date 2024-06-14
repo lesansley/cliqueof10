@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setProfile }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,10 +16,12 @@ const Login = ({ setProfile }) => {
         `${process.env.REACT_APP_SERVER_URL}/login`,
         { username, password }
       );
-      setProfile(response.data);
-      alert("Login successful");
+      if (response.data) {
+        setProfile(response.data);
+        navigate("/profile"); // Navigate to profile page
+      }
     } catch (error) {
-      setError(error.response.data.error || "Invalid credentials");
+      setError(error.response?.data?.error || "Invalid credentials");
     }
   };
 
@@ -48,6 +52,13 @@ const Login = ({ setProfile }) => {
             Login
           </button>
         </form>
+        <div className="my-4 text-center text-gray-500">or</div>
+        <button
+          onClick={() => navigate("/register")}
+          className="w-full bg-green-500 text-white p-2 rounded mt-4"
+        >
+          Register
+        </button>
       </div>
     </div>
   );
