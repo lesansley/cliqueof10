@@ -106,6 +106,32 @@ const FriendPage = ({ profile, setProfile }) => {
     }
   };
 
+  const handleRemoveFriend = async (friendUsername) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/friends/remove-friend`,
+        {
+          username: profile.username,
+          friendUsername,
+        }
+      );
+      if (response.data.message) {
+        setCurrentFriends((prev) =>
+          prev.filter((friend) => friend.username !== friendUsername)
+        );
+        setProfile((prevProfile) => ({
+          ...prevProfile,
+          friends: prevProfile.friends.filter(
+            (friend) => friend !== friendUsername
+          ),
+        }));
+        setError(""); // Clear any existing error
+      }
+    } catch (error) {
+      setError(error.response?.data?.error || "Error removing friend");
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
@@ -124,6 +150,12 @@ const FriendPage = ({ profile, setProfile }) => {
                 className="bg-blue-500 text-white p-2 rounded"
               >
                 Chat
+              </button>
+              <button
+                onClick={() => handleRemoveFriend(friend.username)}
+                className="bg-red-500 text-white p-2 rounded"
+              >
+                Remove
               </button>
             </li>
           ))}

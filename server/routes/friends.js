@@ -207,4 +207,41 @@ router.post("/cancel-request", async (req, res) => {
   }
 });
 
+// Endpoint to remove a friend
+router.post("/remove-friend", async (req, res) => {
+  const { username, friendUsername } = req.body;
+
+  if (!username || !friendUsername) {
+    return res
+      .status(400)
+      .json({ error: "Username and friend username are required" });
+  }
+
+  try {
+    const userRef = db.ref(`users/${username}/profile/friends`);
+    const friendRef = db.ref(`users/${friendUsername}/profile/friends`);
+
+    const userSnapshot = await userRef.once("value");
+    const friendSnapshot = await friendRef.once("value");
+
+    const userFriends = userSnapshot.val() || [];
+    const friendFriends = friendSnapshot.val() || [];
+
+    const updatedUserFriends = userFriends.filter(
+      (friend) => friend !== friendUsername
+    );
+    const updatedFriendFriends = friendFriends.filter(
+      (friend) => friend !== username
+    );
+
+    await userRef.set(updatedUserFriends);
+    await friendRef.set(updatedFriendFriends);
+
+    res.status(200).json({ message: "Friend removed successfully" });
+  } catch (error) {
+    console.error("Error removing friend:", error);
+    res.status(500).json({ error: "Error removing friend" });
+  }
+});
+
 export default router;
