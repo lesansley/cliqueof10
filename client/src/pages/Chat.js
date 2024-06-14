@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Chat = ({ profile }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(profile.chat || []);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -47,6 +50,12 @@ const Chat = ({ profile }) => {
             Send
           </button>
         </form>
+        <button
+          onClick={() => navigate("/profile")}
+          className="w-full bg-purple-500 text-white p-2 rounded mt-4"
+        >
+          Back to Profile
+        </button>
       </div>
     </div>
   );
