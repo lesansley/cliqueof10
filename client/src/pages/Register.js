@@ -17,7 +17,7 @@ const Register = () => {
         { username, password }
       );
       if (response.data.message) {
-        alert("Login successful");
+        alert("Registration is successful");
         navigate("/login"); // Navigate to login page
       }
     } catch (error) {
