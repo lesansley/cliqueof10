@@ -1,5 +1,4 @@
-// `${process.env.REACT_APP_SERVER_URL}/search-friends`
-// `${process.env.REACT_APP_SERVER_URL}/add-friend`
+// `${process.env.REACT_APP_SERVER_URL}
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

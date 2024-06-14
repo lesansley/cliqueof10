@@ -10,6 +10,7 @@ import friendsRoutes from "./routes/friends.js";
 import profileRoutes from "./routes/profile.js";
 import authRoutes from "./routes/auth.js";
 import chatRoutes from "./routes/chat.js";
+import adminRoutes from "./routes/admin.js";
 
 // Initialize Firebase Admin
 admin.initializeApp({
@@ -30,6 +31,7 @@ app.use("/friends", friendsRoutes);
 app.use("/profile", profileRoutes);
 app.use("/auth", authRoutes);
 app.use("/chat", chatRoutes);
+app.use("/admin", adminRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
