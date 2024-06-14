@@ -13,7 +13,7 @@ const Register = () => {
     setError("");
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/register`,
+        `${process.env.REACT_APP_SERVER_URL}/auth/register`,
         { username, password }
       );
       if (response.data.message) {

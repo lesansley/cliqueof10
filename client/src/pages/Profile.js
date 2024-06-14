@@ -152,12 +152,6 @@ const Profile = ({ profile, setProfile }) => {
           </button>
         </form>
         <button
-          onClick={() => navigate("/chat")}
-          className="w-full bg-green-500 text-white p-2 rounded mt-4"
-        >
-          Go to Chat
-        </button>
-        <button
           onClick={() => navigate("/friends")}
           className="w-full bg-purple-500 text-white p-2 rounded mt-4"
         >

@@ -21,8 +21,15 @@ const App = () => {
               path="/profile"
               element={<Profile profile={profile} setProfile={setProfile} />}
             />
-            <Route path="/chat" element={<Chat profile={profile} />} />
-            <Route path="/friends" element={<Friends profile={profile} />} />
+            <Route
+              path="/chat/:friendUsername"
+              element={<Chat profile={profile} />}
+            />
+
+            <Route
+              path="/friends"
+              element={<Friends profile={profile} setProfile={setProfile} />}
+            />
           </>
         )}
       </Routes>
