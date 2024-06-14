@@ -71,9 +71,9 @@ const AdminDashboard = ({ isAdmin }) => {
             {users.map((user) => (
               <tr key={user.username}>
                 <td className="border px-4 py-2">{user.username}</td>
-                <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{user.firstName}</td>
-                <td className="border px-4 py-2">{user.lastName}</td>
+                <td className="border px-4 py-2">{user.profile.email}</td>
+                <td className="border px-4 py-2">{user.profile.firstName}</td>
+                <td className="border px-4 py-2">{user.profile.lastName}</td>
                 <td className="border px-4 py-2">
                   <button
                     onClick={() => handleDeleteUser(user.username)}
