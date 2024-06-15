@@ -3,7 +3,8 @@
 ## Setup Firebase
 
 - Create a Firebase project in the Firebase Console.
-- Get your Firebase config credentials.
+- Configure Realtime Database.
+- Obtain Firebase config credentials.
 
 ### Steps to Get This Configuration
 
